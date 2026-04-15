@@ -61,6 +61,52 @@
         }
         footer { text-align: center; padding: 2rem; background: #eee; }
     </style>
+    
+    <script>
+        async function askAI() {
+            const inputField = document.getElementById('user-input');
+            const chatWindow = document.getElementById('chat-window');
+            const userText = inputField.value;
+    
+            if (!userText) return;
+    
+            // 화면에 사용자 메시지 추가
+            chatWindow.innerHTML += `<p><strong>나:</strong> ${userText}</p>`;
+            inputField.value = '';
+    
+            try {
+                // OpenRouter API 호출 (무료 모델: meta-llama/llama-3.3-70b-instruct:free)
+                const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+                    method: "POST",
+                    headers: {
+                        "Authorization": "Bearer YOUR_OPENROUTER_API_KEY", // 여기에 키 입력
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        "model": "meta-llama/llama-3.3-70b-instruct:free",
+                        "messages": [
+                            {
+                                "role": "system", 
+                                "content": "당신은 자바 개발자의 포트폴리오 도우미입니다. 사용자가 질문하면 이 개발자의 강점(Java, Spring Boot, MySQL)을 바탕으로 전문성 있게 답변하세요."
+                            },
+                            { "role": "user", "content": userText }
+                        ]
+                    })
+                });
+    
+                const data = await response.json();
+                const aiResponse = data.choices[0].message.content;
+    
+                // 화면에 AI 메시지 추가
+                chatWindow.innerHTML += `<p><strong>AI:</strong> ${aiResponse}</p>`;
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+    
+            } catch (error) {
+                console.error("AI 호출 실패:", error);
+                chatWindow.innerHTML += `<p style="color:red;">오류가 발생했습니다. API 키를 확인해주세요.</p>`;
+            }
+        }
+</script>
 </head>
 <body>
 
@@ -77,6 +123,19 @@
     <section id="about">
         <h2>About Me</h2>
         <p>복잡한 비즈니스 로직을 효율적인 코드로 해결하는 것에 즐거움을 느낍니다. 유지보수가 용이한 아키텍처와 성능 최적화에 관심이 많습니다.</p>
+    </section>
+
+    <section id="about">
+        <div id="ai-assistant" style="border: 1px solid #ddd; padding: 15px; border-radius: 10px; background: #fff;">
+            <h3>🤖 AI 프로젝트 가이드 (Llama 3 기반)</h3>
+            <div id="chat-window" style="height: 200px; overflow-y: auto; border-bottom: 1px solid #eee; margin-bottom: 10px; font-size: 0.9rem;">
+                <p style="color: #888;">프로젝트나 기술 스택에 대해 물어보세요!</p>
+            </div>
+            <div style="display: flex;">
+                <input type="text" id="user-input" placeholder="예: Redis를 왜 사용했나요?" style="flex: 1; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+                <button onclick="askAI()" style="margin-left: 5px; padding: 8px 15px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">전송</button>
+            </div>
+        </div>
     </section>
 
     <section id="skills">
