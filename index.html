@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Developer | Portfolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --dark-color: #343a40;
+            --light-bg: #f8f9fa;
+        }
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            color: #333;
+        }
+        header {
+            background: var(--dark-color);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        section { margin-bottom: 3rem; }
+        h2 {
+            border-left: 5px solid var(--primary-color);
+            padding-left: 15px;
+            margin-bottom: 1.5rem;
+        }
+        .tech-stack span {
+            background: #e9ecef;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-right: 5px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+        .project-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: 0.3s;
+        }
+        .project-card:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .links a {
+            color: var(--primary-color);
+            text-decoration: none;
+            margin-right: 15px;
+            font-weight: bold;
+        }
+        footer { text-align: center; padding: 2rem; background: #eee; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>안녕하세요, 백엔드 개발자 [이름]입니다.</h1>
+    <p>Java / Spring Boot / MySQL / AWS</p>
+    <div class="links" style="margin-top: 1rem;">
+        <a href="https://github.com/your-id" style="color: white;"><i class="fab fa-github"></i> GitHub</a>
+        <a href="mailto:your-email@gmail.com" style="color: white;"><i class="fas fa-envelope"></i> Email</a>
+    </div>
+</header>
+
+<div class="container">
+    <section id="about">
+        <h2>About Me</h2>
+        <p>복잡한 비즈니스 로직을 효율적인 코드로 해결하는 것에 즐거움을 느낍니다. 유지보수가 용이한 아키텍처와 성능 최적화에 관심이 많습니다.</p>
+    </section>
+
+    <section id="skills">
+        <h2>Tech Stacks</h2>
+        <div class="tech-stack">
+            <strong>Backend:</strong> <span>Java 17</span> <span>Spring Boot</span> <span>Spring Security</span> <span>JPA/Hibernate</span><br>
+            <strong>Database:</strong> <span>MySQL</span> <span>Redis</span> <span>PostgreSQL</span><br>
+            <strong>Infra:</strong> <span>AWS EC2/S3</span> <span>Docker</span> <span>Github Actions</span>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Projects</h2>
+        
+        <div class="project-card">
+            <h3>🚀 중고 거래 플랫폼 API 개발</h3>
+            <p>Spring Boot와 JPA를 사용하여 구축한 RESTful API 서버입니다.</p>
+            <ul>
+                <li>Redis를 활용한 동시성 제어 (선착순 쿠폰 이벤트)</li>
+                <li>QueryDSL을 사용한 동적 검색 조건 최적화</li>
+                <li>JUnit5를 활용한 비즈니스 로직 테스트 커버리지 80% 달성</li>
+            </ul>
+            <div class="links">
+                <a href="#"><i class="fab fa-github"></i> Repository</a>
+                <a href="#"><i class="fas fa-external-link-alt"></i> Architecture Note</a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <h3>📊 실시간 데이터 대시보드</h3>
+            <p>Kafka와 WebSocket을 이용한 실시간 트래픽 모니터링 시스템입니다.</p>
+            <div class="links">
+                <a href="#"><i class="fab fa-github"></i> Repository</a>
+            </div>
+        </div>
+    </section>
+</div>
+
+<footer>
+    <p>© 2024 [이름]. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
